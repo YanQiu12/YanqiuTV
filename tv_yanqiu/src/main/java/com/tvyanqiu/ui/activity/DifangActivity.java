@@ -4,7 +4,10 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.GridView;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.tvyanqiu.R;
@@ -12,6 +15,7 @@ import com.tvyanqiu.ui.adapter.TvAdapter;
 import com.tvyanqiu.bean.TvInfoListBean;
 import com.tvyanqiu.http.MyOkHttpClient;
 import com.tvyanqiu.config.Constant;
+import com.tvyanqiu.ui.dialog.TVDialogFragment;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,13 +23,14 @@ import java.util.List;
 
 import okhttp3.Request;
 
-public class DifangActivity extends AppCompatActivity {
+public class DifangActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener, View.OnClickListener {
 
     private List<TvInfoListBean.TvinfoBean> tvinfoList;
     private ArrayList<TvInfoListBean.TvinfoBean> okTvinfoList;
     private TvAdapter myGridAdapter;
     private GridView gvDifangTvinfo;
     private String difangJsonUrl;
+    public static int style = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +43,11 @@ public class DifangActivity extends AppCompatActivity {
     }
 
     private void initViewAndListener() {
+        RadioGroup rgStyle = findViewById(R.id.rg_style);
+        TextView tvCaidan = findViewById(R.id.tv_caidan);
         gvDifangTvinfo = findViewById(R.id.gv_difang_tvinfo);
+        rgStyle.setOnCheckedChangeListener(this);
+        tvCaidan.setOnClickListener(this);
         myGridAdapter = new TvAdapter(this, getFragmentManager(), okTvinfoList);
         gvDifangTvinfo.setAdapter(myGridAdapter);
     }
@@ -71,4 +80,33 @@ public class DifangActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onCheckedChanged(RadioGroup radioGroup, int i) {
+        switch (i) {
+            case R.id.rb_style0:
+                style = 0;
+                break;
+            case R.id.rb_style1:
+                style = 1;
+                break;
+            case R.id.rb_style2:
+                style = 2;
+                break;
+            case R.id.rb_style3:
+                style = 3;
+                break;
+            case R.id.rb_style4:
+                style = 4;
+                break;
+        }
+    }
+
+    @Override
+    public void onClick(View view) {
+        TVDialogFragment webDialogFragment = new TVDialogFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("TVUrl", Constant.CAR_URL);
+        webDialogFragment.setArguments(bundle);
+        webDialogFragment.show(getFragmentManager(), "webDialogFragment");
+    }
 }

@@ -1,13 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.activity.DifangActivity">
+
+    <RadioGroup
+        android:id="@+id/rg_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_style0"
+            android:checked="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="原始" />
+
+        <RadioButton
+            android:id="@+id/rb_style1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="自适应" />
+
+        <RadioButton
+            android:id="@+id/rb_style2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="全屏" />
+
+        <RadioButton
+            android:id="@+id/rb_style3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="16:9" />
+
+        <RadioButton
+            android:id="@+id/rb_style4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4:3" />
+    </RadioGroup>
+
     <GridView
         android:id="@+id/gv_difang_tvinfo"
-        android:numColumns="2"
+        android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-</RelativeLayout>
+        android:layout_height="0dp"
+        android:numColumns="2" />
+    <TextView
+        android:id="@+id/tv_caidan"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"></TextView>
+</LinearLayout>

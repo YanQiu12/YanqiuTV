@@ -11,8 +11,8 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.tvyanqiu.R;
 import com.tvyanqiu.bean.TvInfoListBean;
-import com.tvyanqiu.ui.dialog.TVDialogFragment;
 import com.tvyanqiu.config.Constant;
+import com.tvyanqiu.ui.dialog.TVDialogFragment;
 
 import java.util.ArrayList;
 
